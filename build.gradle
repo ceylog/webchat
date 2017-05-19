@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+	jcenter()
+}
+
+configurations {
+	all*.exclude module: 'spring-boot-starter-tomcat'
+}
+
+dependencies {
+	compile('org.springframework.kafka:spring-kafka')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-undertow')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
