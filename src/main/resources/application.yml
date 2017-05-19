@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   kafka:
-    bootstrap-servers: www.wglgg.cn:9092
+    bootstrap-servers: localhost:9092
     template:
       default-topic: msg2tts
     consumer:
@@ -12,7 +12,6 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringDeserializer
       value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      batch-size: 1000
     listener:
       concurrency: 3
-    producer:
-      batch-size: 1000
