@@ -137,7 +137,8 @@
     function renderGrid() {
         list.empty();
         if (logData) {
-            logData.forEach(function (val, ind, arr) {
+            for(var i = logData.length-1; i>=0; i--){
+                var val = logData[i];
                 //console.log(val)
                 var stt = '<span class="am-badge am-radius">failure</span>';
                 var sty = "am-danger";
@@ -155,7 +156,7 @@
                     stt + "</td><td>" +
                     stime + "</td><td></tr>";
                 list.append(tr);
-            })
+            }
         }
     }
 </script>
