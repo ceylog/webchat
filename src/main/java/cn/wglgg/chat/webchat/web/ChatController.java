@@ -27,8 +27,9 @@ public class ChatController {
 
     @PostMapping(value = "/sendMsg",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String sendMsg(String msg){
-        msgProducer.send(msg);
+    public String sendMsg(String msg,String voiceName,Long sendTime){
+        String json = "{\"msg\":\""+msg+"\",\"voiceName\":\""+voiceName+"\",\"sendTime\":"+sendTime+"}";
+        msgProducer.send(json);
         return "{\"code\":0,\"msg\":\"send success\"}";
     }
 }
