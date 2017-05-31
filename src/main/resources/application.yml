@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   activemq:
-    broker-url: tcp://hcy.wglgg.cn:61613
+    broker-url: tcp://localhost:61613
     user: admin
     password: password
 
