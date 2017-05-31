@@ -70,7 +70,6 @@
                         <th>声音</th>
                         <th>状态</th>
                         <th>时间</th>
-                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody id="list"></tbody>
@@ -113,6 +112,7 @@
             })
         });
     });
+
     Date.prototype.format = function(fmt) { 
         var o = { 
             "M+" : this.getMonth()+1,                 //月份 
@@ -141,11 +141,9 @@
                 //console.log(val)
                 var stt = '<span class="am-badge am-radius">failure</span>';
                 var sty = "am-danger";
-                var opt = '<span class="am-badge am-radius">nan</span>';
                 if (val.status == 0) {
                     stt = '<span class="am-badge am-badge-success am-radius">success</span>';
                     sty = 'am-success';
-                    //opt = '<a class="am-badge am-badge-secondary am-radius" target="_blank" href="getAudio/' + val.fileName + '">download</a>';
                 }
                 var stime = '';
                 if(val.sendTime){
@@ -155,8 +153,7 @@
                     val.msg + "</td><td>"
                     + val.voiceName + "</td><td>" +
                     stt + "</td><td>" +
-                    stime + "</td><td>" +
-                    opt + "</td></tr>";
+                    stime + "</td><td></tr>";
                 list.append(tr);
             })
         }
