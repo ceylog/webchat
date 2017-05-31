@@ -97,7 +97,7 @@
 
         btn_sub.click(function () {
             btn_sub.button('loading');
-            var dt = {'msg': text.val(), 'voiceName': voiceName.val(),"sendTime":new Date()};
+            var dt = {'msg': text.val(), 'voiceName': voiceName.val(),"sendTime":new Date().getTime()};
             $.post('sendMsg', dt, function (data) {
                 if (0 == data.code) {
                     dt.status = 0;
@@ -147,11 +147,15 @@
                     sty = 'am-success';
                     //opt = '<a class="am-badge am-badge-secondary am-radius" target="_blank" href="getAudio/' + val.fileName + '">download</a>';
                 }
+                var stime = '';
+                if(val.sendTime){
+                    stime = new Date(val.sendTime).format("yyyy-MM-dd hh:mm:ss");
+                }
                 var tr = "<tr class=" + sty + "><td>" +
                     val.msg + "</td><td>"
                     + val.voiceName + "</td><td>" +
                     stt + "</td><td>" +
-                    val.sendTime.format("yyyy-MM-dd hh:mm:ss")+"</td><td>"+
+                    stime + "</td><td>" +
                     opt + "</td></tr>";
                 list.append(tr);
             })
