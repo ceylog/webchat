@@ -26,10 +26,19 @@ configurations {
 	all*.exclude module: 'spring-boot-starter-tomcat'
 }
 
+ext {
+	thymeleafVersion = '3.0.5.RELEASE'
+}
+
 dependencies {
-	compile('org.springframework.kafka:spring-kafka')
+//	compile('org.springframework.kafka:spring-kafka')
+	compile 'org.springframework.boot:spring-boot-starter-activemq'
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile("org.thymeleaf:thymeleaf:${thymeleafVersion}")
+	compile("org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}")
+	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-undertow')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

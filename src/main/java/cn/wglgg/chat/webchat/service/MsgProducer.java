@@ -1,8 +1,8 @@
 package cn.wglgg.chat.webchat.service;
 
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,13 +12,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MsgProducer {
-    @Value("${spring.kafka.template.default-topic}")
-    private String topic;
+    /*
+     * @Value("${spring.kafka.template.default-topic}") private String topic;
+     * @Autowired private KafkaTemplate<String, String> kafkaTemplate; public
+     * void send(String text) { kafkaTemplate.send(topic, text); }
+     */
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private JmsMessagingTemplate jmsTemplate;
 
-    public void send(String text) {
-        kafkaTemplate.send(topic, text);
+    public void send(String msg) {
+        jmsTemplate.convertAndSend(new ActiveMQQueue(("wglgg.msg2tts")), msg);
     }
 }
